@@ -1,4 +1,4 @@
-import ThemeAndVideoContext from '../../context/ThemeAndVideoContext'
+import ThemeAndVideoContext from "../../context/ThemeAndVideoContext";
 
 import {
   ItemLink,
@@ -11,10 +11,10 @@ import {
   TrendingChannelName,
   TrendingViewsAndDate,
   TrendingDot,
-} from './styledComponents'
+} from "./styledComponents";
 
-const TrendingVideoCard = props => {
-  const {videoDetails} = props
+const TrendingVideoCard = (props) => {
+  const { videoDetails } = props;
   const {
     id,
     title,
@@ -23,13 +23,13 @@ const TrendingVideoCard = props => {
     publishedAt,
     name,
     profileImageUrl,
-  } = videoDetails
+  } = videoDetails;
 
   return (
     <ThemeAndVideoContext.Consumer>
-      {value => {
-        const {isDarkTheme} = value
-        const textColor = isDarkTheme ? '#f9f9f9' : '#231f20'
+      {(value) => {
+        const { isDarkTheme } = value;
+        const textColor = isDarkTheme ? "#f9f9f9" : "#231f20";
 
         return (
           <ItemLink to={`/videos/${id}`} className="link">
@@ -56,10 +56,10 @@ const TrendingVideoCard = props => {
               </TrendingVideoDetails>
             </TrendingListItem>
           </ItemLink>
-        )
+        );
       }}
     </ThemeAndVideoContext.Consumer>
-  )
-}
+  );
+};
 
-export default TrendingVideoCard
+export default TrendingVideoCard;

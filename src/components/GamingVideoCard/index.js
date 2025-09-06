@@ -1,4 +1,4 @@
-import ThemeAndVideoContext from '../../context/ThemeAndVideoContext'
+import ThemeAndVideoContext from "../../context/ThemeAndVideoContext";
 
 import {
   ItemLink,
@@ -7,17 +7,17 @@ import {
   GamingContentSection,
   GamingTitle,
   GamingViewsAndDate,
-} from './styledComponents'
+} from "./styledComponents";
 
-const GamingVideoCard = props => {
-  const {videoDetails} = props
-  const {id, title, thumbnailUrl, viewCount} = videoDetails
+const GamingVideoCard = (props) => {
+  const { videoDetails } = props;
+  const { id, title, thumbnailUrl, viewCount } = videoDetails;
 
   return (
     <ThemeAndVideoContext.Consumer>
-      {value => {
-        const {isDarkTheme} = value
-        const textColor = isDarkTheme ? '#f9f9f9' : '#231f20'
+      {(value) => {
+        const { isDarkTheme } = value;
+        const textColor = isDarkTheme ? "#f9f9f9" : "#231f20";
 
         return (
           <ItemLink to={`/videos/${id}`} className="link">
@@ -31,10 +31,10 @@ const GamingVideoCard = props => {
               </GamingContentSection>
             </GamingListItem>
           </ItemLink>
-        )
+        );
       }}
     </ThemeAndVideoContext.Consumer>
-  )
-}
+  );
+};
 
-export default GamingVideoCard
+export default GamingVideoCard;

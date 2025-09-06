@@ -1,9 +1,9 @@
-import ReactPlayer from 'react-player'
+import ReactPlayer from "react-player";
 
-import {AiOutlineLike, AiOutlineDislike} from 'react-icons/ai'
-import {BiListPlus} from 'react-icons/bi'
+import { AiOutlineLike, AiOutlineDislike } from "react-icons/ai";
+import { BiListPlus } from "react-icons/bi";
 
-import ThemeAndVideoContext from '../../context/ThemeAndVideoContext'
+import ThemeAndVideoContext from "../../context/ThemeAndVideoContext";
 
 import {
   VideoPlayer,
@@ -22,41 +22,47 @@ import {
   ChannelSubscribers,
   ChannelDescription,
   BtnContainer,
-} from './styledComponents'
+} from "./styledComponents";
 
-const PlayVideoView = props => {
-  const {videoDetails, isLiked, isDisLiked, clickLiked, clickDisLiked} = props
+const PlayVideoView = (props) => {
+  const {
+    videoDetails,
+    isLiked,
+    isDisLiked,
+    clickLiked,
+    clickDisLiked,
+  } = props;
 
   const onClickLike = () => {
-    clickLiked()
-  }
+    clickLiked();
+  };
 
   const onClickDislike = () => {
-    clickDisLiked()
-  }
+    clickDisLiked();
+  };
 
   return (
     <ThemeAndVideoContext.Consumer>
-      {value => {
-        const {isDarkTheme, addVideo, savedVideos} = value
-        const textColor = isDarkTheme ? '#64748b' : '#231f20'
-        const likeIconColor = isLiked ? '#2563eb' : '#64748b'
-        const dislikeIconColor = isDisLiked ? '#2563eb' : '#64748b'
-        let isSaved
+      {(value) => {
+        const { isDarkTheme, addVideo, savedVideos } = value;
+        const textColor = isDarkTheme ? "#64748b" : "#231f20";
+        const likeIconColor = isLiked ? "#2563eb" : "#64748b";
+        const dislikeIconColor = isDisLiked ? "#2563eb" : "#64748b";
+        let isSaved;
         const index = savedVideos.findIndex(
-          eachVideo => eachVideo.id === videoDetails.id,
-        )
+          (eachVideo) => eachVideo.id === videoDetails.id
+        );
         if (index === -1) {
-          isSaved = false
+          isSaved = false;
         } else {
-          isSaved = true
+          isSaved = true;
         }
 
-        const saveIconColor = isSaved ? '#2563eb' : textColor
+        const saveIconColor = isSaved ? "#2563eb" : textColor;
 
         const onClickSave = () => {
-          addVideo(videoDetails)
-        }
+          addVideo(videoDetails);
+        };
 
         return (
           <VideoPlayer>
@@ -98,7 +104,7 @@ const PlayVideoView = props => {
                     onClick={onClickSave}
                   >
                     <BiListPlus size={25} />
-                    <ButtonText>{isSaved ? 'Saved' : 'Save'}</ButtonText>
+                    <ButtonText>{isSaved ? "Saved" : "Save"}</ButtonText>
                   </SocialButton>
                 </BtnContainer>
               </PlaySocialButtonsContainer>
@@ -120,10 +126,10 @@ const PlayVideoView = props => {
               </ChannelInfo>
             </ChannelContainer>
           </VideoPlayer>
-        )
+        );
       }}
     </ThemeAndVideoContext.Consumer>
-  )
-}
+  );
+};
 
-export default PlayVideoView
+export default PlayVideoView;

@@ -1,10 +1,10 @@
-import {withRouter} from 'react-router-dom'
-import Cookies from 'js-cookie'
-import Popup from 'reactjs-popup'
-import {GiHamburgerMenu} from 'react-icons/gi'
-import {BsMoon, BsBrightnessHigh} from 'react-icons/bs'
-import {FiLogOut} from 'react-icons/fi'
-import ThemeAndVideoContext from '../../context/ThemeAndVideoContext'
+import { withRouter } from "react-router-dom";
+import Cookies from "js-cookie";
+import Popup from "reactjs-popup";
+import { GiHamburgerMenu } from "react-icons/gi";
+import { BsMoon, BsBrightnessHigh } from "react-icons/bs";
+import { FiLogOut } from "react-icons/fi";
+import ThemeAndVideoContext from "../../context/ThemeAndVideoContext";
 
 import {
   NavbarBg,
@@ -21,24 +21,24 @@ import {
   ConfirmButton,
   ModalDesc,
   ButtonsContainer,
-} from './styledComponents'
+} from "./styledComponents";
 
-const Header = props => (
+const Header = (props) => (
   <ThemeAndVideoContext.Consumer>
-    {value => {
-      const {isDarkTheme, toggleTheme} = value
-      const color = isDarkTheme ? '#ffffff' : '#00306e'
-      const bgColor = isDarkTheme ? '#181818' : '#ffffff'
+    {(value) => {
+      const { isDarkTheme, toggleTheme } = value;
+      const color = isDarkTheme ? "#ffffff" : "#00306e";
+      const bgColor = isDarkTheme ? "#181818" : "#ffffff";
 
       const onClickChangeTheme = () => {
-        toggleTheme()
-      }
+        toggleTheme();
+      };
 
       const onClickLogout = () => {
-        const {history} = props
-        Cookies.remove('jwt_token')
-        history.replace('/login')
-      }
+        const { history } = props;
+        Cookies.remove("jwt_token");
+        history.replace("/login");
+      };
 
       return (
         <NavbarBg bgColor={bgColor}>
@@ -46,8 +46,8 @@ const Header = props => (
             <HeaderLogo
               src={
                 isDarkTheme
-                  ? 'https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-dark-theme-img.png'
-                  : 'https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-light-theme-img.png'
+                  ? "https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-dark-theme-img.png"
+                  : "https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-light-theme-img.png"
               }
               alt="website logo"
             />
@@ -79,7 +79,7 @@ const Header = props => (
                 </LogoutButton>
               }
             >
-              {close => (
+              {(close) => (
                 <ModalContainer>
                   <ModalDesc>Are you sure, you want to logout?</ModalDesc>
                   <ButtonsContainer>
@@ -107,7 +107,7 @@ const Header = props => (
               }
               className="popup-content"
             >
-              {close => (
+              {(close) => (
                 <ModalContainer>
                   <ModalDesc>Are you sure, you want to logout?</ModalDesc>
                   <ButtonsContainer>
@@ -128,9 +128,9 @@ const Header = props => (
             </Popup>
           </ActionsContainer>
         </NavbarBg>
-      )
+      );
     }}
   </ThemeAndVideoContext.Consumer>
-)
+);
 
-export default withRouter(Header)
+export default withRouter(Header);

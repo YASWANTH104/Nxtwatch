@@ -5,29 +5,29 @@ import {
   NoVideosNote,
   RetryButton,
   VideoCardList,
-} from './styledComponents'
+} from "./styledComponents";
 
-import ThemeAndVideoContext from '../../context/ThemeAndVideoContext'
-import HomeVideoCard from '../HomeVideoCard'
+import ThemeAndVideoContext from "../../context/ThemeAndVideoContext";
+import HomeVideoCard from "../HomeVideoCard";
 
-const HomeVideos = props => {
-  const {homeVideos, onRetry} = props
-  const videosCount = homeVideos.length
+const HomeVideos = (props) => {
+  const { homeVideos, onRetry } = props;
+  const videosCount = homeVideos.length;
 
   const onClickRetry = () => {
-    onRetry()
-  }
+    onRetry();
+  };
 
   return (
     <ThemeAndVideoContext.Consumer>
-      {value => {
-        const {isDarkTheme} = value
-        const headingColor = isDarkTheme ? '#f1f5f9' : '#1e293b'
-        const noteColor = isDarkTheme ? '#e2e8f0' : '#475569'
+      {(value) => {
+        const { isDarkTheme } = value;
+        const headingColor = isDarkTheme ? "#f1f5f9" : "#1e293b";
+        const noteColor = isDarkTheme ? "#e2e8f0" : "#475569";
 
         return videosCount > 0 ? (
           <VideoCardList>
-            {homeVideos.map(eachVideo => (
+            {homeVideos.map((eachVideo) => (
               <HomeVideoCard video={eachVideo} key={eachVideo.id} />
             ))}
           </VideoCardList>
@@ -47,10 +47,10 @@ const HomeVideos = props => {
               Retry
             </RetryButton>
           </NoVideosView>
-        )
+        );
       }}
     </ThemeAndVideoContext.Consumer>
-  )
-}
+  );
+};
 
-export default HomeVideos
+export default HomeVideos;

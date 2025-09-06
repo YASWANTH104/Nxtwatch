@@ -1,6 +1,6 @@
-import {Component} from 'react'
-import {Redirect} from 'react-router-dom'
-import Cookies from 'js-cookie'
+import { Component } from "react";
+import { Redirect } from "react-router-dom";
+import Cookies from "js-cookie";
 
 import {
   LoginBgContainer,
@@ -14,33 +14,33 @@ import {
   ShowPasswordLabel,
   LoginButton,
   SubmitError,
-} from './styledComponents'
+} from "./styledComponents";
 
 class Login extends Component {
   state = {
-    username: 'rahul',
-    password: 'rahul@2021',
+    username: "rahul",
+    password: "rahul@2021",
     showPassword: false,
     showSubmitError: false,
-    errorMsg: '',
-  }
+    errorMsg: "",
+  };
 
-  onChangeUsername = event => {
-    this.setState({username: event.target.value})
-  }
+  onChangeUsername = (event) => {
+    this.setState({ username: event.target.value });
+  };
 
-  onChangePassword = event => {
-    this.setState({password: event.target.value})
-  }
+  onChangePassword = (event) => {
+    this.setState({ password: event.target.value });
+  };
 
   onClickShowPassword = () => {
-    this.setState(prevState => ({
+    this.setState((prevState) => ({
       showPassword: !prevState.showPassword,
-    }))
-  }
+    }));
+  };
 
   renderUsernameField = () => {
-    const {username} = this.state
+    const { username } = this.state;
     return (
       <>
         <LabelInput htmlFor="username">USERNAME</LabelInput>
@@ -52,12 +52,12 @@ class Login extends Component {
           placeholder="Username"
         />
       </>
-    )
-  }
+    );
+  };
 
   renderPasswordField = () => {
-    const {showPassword, password} = this.state
-    const passwordType = showPassword ? 'text' : 'password'
+    const { showPassword, password } = this.state;
+    const passwordType = showPassword ? "text" : "password";
     return (
       <>
         <LabelInput htmlFor="password">PASSWORD</LabelInput>
@@ -79,42 +79,42 @@ class Login extends Component {
           </ShowPasswordLabel>
         </CheckboxContainer>
       </>
-    )
-  }
+    );
+  };
 
-  onSubmitSuccess = jwtToken => {
-    const {history} = this.props
-    Cookies.set('jwt_token', jwtToken, {expires: 30})
-    history.replace('/')
-  }
+  onSubmitSuccess = (jwtToken) => {
+    const { history } = this.props;
+    Cookies.set("jwt_token", jwtToken, { expires: 30 });
+    history.replace("/");
+  };
 
-  onSubmitError = errorMsg => {
-    this.setState({showSubmitError: true, errorMsg})
-  }
+  onSubmitError = (errorMsg) => {
+    this.setState({ showSubmitError: true, errorMsg });
+  };
 
-  OnSubmitForm = async event => {
-    event.preventDefault()
-    const {username, password} = this.state
-    const userDetails = {username, password}
-    const LoginUrl = 'https://apis.ccbp.in/login'
+  OnSubmitForm = async (event) => {
+    event.preventDefault();
+    const { username, password } = this.state;
+    const userDetails = { username, password };
+    const LoginUrl = "https://apis.ccbp.in/login";
     const options = {
-      method: 'POST',
+      method: "POST",
       body: JSON.stringify(userDetails),
-    }
-    const response = await fetch(LoginUrl, options)
-    const data = await response.json()
+    };
+    const response = await fetch(LoginUrl, options);
+    const data = await response.json();
     if (response.ok === true) {
-      this.onSubmitSuccess(data.jwt_token)
+      this.onSubmitSuccess(data.jwt_token);
     } else {
-      this.onSubmitError(data.error_msg)
+      this.onSubmitError(data.error_msg);
     }
-  }
+  };
 
   render() {
-    const {showSubmitError, errorMsg} = this.state
-    const jwtToken = Cookies.get('jwt_token')
+    const { showSubmitError, errorMsg } = this.state;
+    const jwtToken = Cookies.get("jwt_token");
     if (jwtToken !== undefined) {
-      return <Redirect to="/" />
+      return <Redirect to="/" />;
     }
     return (
       <LoginBgContainer>
@@ -129,8 +129,8 @@ class Login extends Component {
           {showSubmitError && <SubmitError>*{errorMsg}</SubmitError>}
         </FormContainer>
       </LoginBgContainer>
-    )
+    );
   }
 }
 
-export default Login
+export default Login;

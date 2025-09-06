@@ -1,4 +1,4 @@
-import ThemeAndVideoContext from '../../context/ThemeAndVideoContext'
+import ThemeAndVideoContext from "../../context/ThemeAndVideoContext";
 
 import {
   ListItem,
@@ -11,10 +11,10 @@ import {
   ChannelName,
   ViewsAndDate,
   Dot,
-} from './styledComponents'
+} from "./styledComponents";
 
-const HomeVideoCard = props => {
-  const {video} = props
+const HomeVideoCard = (props) => {
+  const { video } = props;
   const {
     id,
     title,
@@ -23,13 +23,13 @@ const HomeVideoCard = props => {
     publishedAt,
     name,
     profileImageUrl,
-  } = video
+  } = video;
 
   return (
     <ThemeAndVideoContext.Consumer>
-      {value => {
-        const {isDarkTheme} = value
-        const textColor = isDarkTheme ? '#f9f9f9' : '#231f20'
+      {(value) => {
+        const { isDarkTheme } = value;
+        const textColor = isDarkTheme ? "#f9f9f9" : "#231f20";
 
         return (
           <NavLink to={`/videos/${id}`} className="link">
@@ -47,10 +47,10 @@ const HomeVideoCard = props => {
               </VideoDetails>
             </ListItem>
           </NavLink>
-        )
+        );
       }}
     </ThemeAndVideoContext.Consumer>
-  )
-}
+  );
+};
 
-export default HomeVideoCard
+export default HomeVideoCard;
